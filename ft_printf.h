@@ -6,7 +6,7 @@
 /*   By: dancuenc <dancuenc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 14:08:19 by dancuenc          #+#    #+#             */
-/*   Updated: 2025/03/11 17:03:55 by dancuenc         ###   ########.fr       */
+/*   Updated: 2025/03/11 18:59:52 by dancuenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,24 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdio.h>
+# include <limits.h>
 
-int	ft_print_c(char c, int *count);
+int		ft_print_c(char c, int *count);
 
-int	ft_print_s(char *str, int *count);
+int		ft_print_s(char *str, int *count);
 
-int	ft_print_p();
+int		ft_print_p(char *format, int *count);
 
-int	ft_print_di(int nbr, int *count);
+int		ft_print_di(int nbr, int *count);
 
-int	ft_print_u(unsigned int nbr, int *count);
+int		ft_print_u(unsigned int nbr, int *count);
+
+int		ft_print_x(unsigned int nbr, int *count);
+
+int		ft_print_X(unsigned int nbr, int *count);
+
+int		ft_print_percent(int *count);
+
+void	ft_putnbr_base(uintptr_t nbr, char *base);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: dancuenc <dancuenc@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/15 12:14:21 by dancuenc          #+#    #+#              #
-#    Updated: 2025/02/06 18:17:12 by dancuenc         ###   ########.fr        #
+#    Updated: 2025/03/11 19:00:30 by dancuenc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 
 clean:
-	rm -f $(OBJ) $(OBJ_BONUS) .bonus
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)

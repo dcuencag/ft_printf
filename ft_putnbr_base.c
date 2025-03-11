@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printX.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dancuenc <dancuenc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/11 18:42:11 by dancuenc          #+#    #+#             */
-/*   Updated: 2025/03/11 18:48:34 by dancuenc         ###   ########.fr       */
+/*   Created: 2025/03/11 18:34:48 by dancuenc          #+#    #+#             */
+/*   Updated: 2025/03/11 18:57:04 by dancuenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_print_X(unsigned int nbr, int *count)
+void	ft_putnbr_base(uintptr_t nbr, char *base)
 {
-    char	*hex_digits;
+	char	str[20];
+	int		i;
+	int		base_len;
 
-    hex_digits = "0123456789ABCDEF";
-    if (nbr >= 16)
-    {
-        ft_print_X(nbr / 16, count);
-    }
-    write(1, &hex_digits[nbr % 16], 1);
-    (*count)++;
-    return (*count);
+	base_len = 16;
+	i = 19;
+	str[i--] = '\0';
+	if (nbr == 0)
+		str[i--] = '0';
+	while (nbr > 0)
+	{
+		str[i--] = base[nbr % base_len];
+		nbr /= base_len;
+	}
+	write(1, &str[i + 1], 19 - i);
 }
