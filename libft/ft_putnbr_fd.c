@@ -10,23 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_putnbr_fd(int nb, int fd)
+int	ft_putnbr_fd(int nb, int fd)
 {
+	int	count;
+
+	count = 0;
 	if (nb == -2147483648)
 	{
 		write(fd, "-2147483648", 11);
-		return ;
+		count = 11;
+		return (count);
 	}
 	if (nb < 0)
 	{
 		ft_putchar_fd('-', fd);
+		count++;
 		nb = -nb;
 	}
 	if (nb > 9)
 	{
+		count++;
 		ft_putnbr_fd(nb / 10, fd);
 	}
 	ft_putchar_fd((nb % 10) + '0', fd);
+	count++;
+	return (count);
 }
