@@ -10,14 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
 int	ft_print_p(char *format, int *count)
 {
-	uintptr_t address;
+	long int	address;
 
-	address = (uintptr_t)format;
+	if (!format)
+	{
+		*count += write(1, "(nil)", 5);
+		return (*count);
+	}
+	address = (long int)format;
 	write(1, "0x", 2);
+	(*count) += 2;
 	ft_putnbr_base(address, "0123456789abcdef");
 	(*count)++;
 	return (*count);
