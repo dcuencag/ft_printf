@@ -14,7 +14,11 @@
 
 int	ft_print_s(char *str, int *count)
 {
+	int bytes_read;
+
+	bytes_read = 0;
 	ft_putstr_fd(str, 1);
-	(*count)++;
-	return(*count);
+	bytes_read = ft_strlen(str);
+	(*count) += bytes_read;
+	return (*count);
 }
