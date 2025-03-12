@@ -15,46 +15,30 @@
 int	format_is(va_list args, char format, int *count)
 {
 	if (format == 'c')
-	{
 		ft_print_c(va_arg(args, int), count);
-	}
 	if (format == 's')
-	{
 		ft_print_s(va_arg(args, char *), count);
-	}
 	if (format == 'p')
-	{
 		ft_print_p(va_arg(args, char *), count);
-	}
 	if (format == 'd' || format == 'i')
-	{
-		ft_print_di(va_arg(args, int), count);
-	}
+		*count += ft_putnbr_fd(va_arg(args, int), 1);
 	if (format == 'u')
-	{
 		ft_print_u(va_arg(args, unsigned int), count);
-	}
 	if (format == 'x')
-	{
-		ft_print_x(va_arg(args, unsigned int), count);
-	}
+		ft_print_x_minus(va_arg(args, unsigned int), count);
 	if (format == 'X')
-	{
-		ft_print_X(va_arg(args, unsigned int), count);
-	}
+		ft_print_x_mayus(va_arg(args, unsigned int), count);
 	if (format == '%')
-	{
 		ft_print_percent(count);
-	}
 	return (*count);
 }
 
 int	ft_printf(char const *str, ...)
 {
-	va_list args;
+	va_list	args;
+	int		count;
+
 	va_start(args, str);
-	int	count;
-	
 	count = 0;
 	while (*str)
 	{
@@ -75,57 +59,60 @@ int	ft_printf(char const *str, ...)
 
 int main(void)
 {
-    // Test character
-    ft_printf("ft_printf: format c = %c\n", 'c');
-    printf("printf:    format c = %c\n\n", 'c');
+  	// Test character
+	ft_printf("%d\n\n", ft_printf("format c = %c %c %c\n", 'x', 'x', 'x'));
+	printf("%d\n\n", printf("format c = %c %c %c\n", 'x', 'x', 'x'));
 
-    // Test string
-    ft_printf("ft_printf: format s = %s\n", "here");
-    printf("printf:    format s = %s\n\n", "here");
+	// Test string
+	printf("returns = %d bytes\n\n", ft_printf("format s = %s\n", "this is a str"));
+	printf("returns = %d bytes\n\n", printf("format s = %s\n", "this is a str")); */
 
-    // Test integer
-    ft_printf("ft_printf: format d = %d\n", 42);
-    printf("printf:    format d = %d\n\n", 42);
+	// Test integer
+	ft_printf("returns = %d bytes\n\n", ft_printf("%d\n", 47483648));
+	printf("returns = %d bytes\n\n", printf("%d\n", 47483648));
 
-    // Test integer with negative value
-    ft_printf("ft_printf: format d = %d\n", -42);
-    printf("printf:    format d = %d\n\n", -42);
+ 	// Test integer with negative value
+	printf("returns = %d bytes\n\n", ft_printf("format d = %d\n", -42));
+	printf("returns = %d bytes\n\n", printf("format d = %d\n", -42));
 
-    // Test integer with INT_MAX
-    ft_printf("ft_printf: format d = %d\n", INT_MAX);
-    printf("printf:    format d = %d\n\n", INT_MAX);
+	// Test integer with INT_MAX
+	printf("returns = %d bytes\n\n", ft_printf("format d = %d\n", INT_MAX));
+	printf("returns = %d bytes\n\n", printf("format d = %d\n", INT_MAX));
 
-    // Test integer with INT_MIN
-    ft_printf("ft_printf: format d = %d\n", INT_MIN);
-    printf("printf:    format d = %d\n\n", INT_MIN);
+	// Test integer with INT_MIN
+	printf("returns = %d bytes\n\n", ft_printf("format d = %d\n", INT_MIN));
+	printf("returns = %d bytes\n\n", printf("format d = %d\n", INT_MIN));
 
-    // Test unsigned integer
-    ft_printf("ft_printf: format u = %u\n", 42);
-    printf("printf:    format u = %u\n\n", 42);
+	// Test unsigned integer
+	printf("returns = %d bytes\n\n", ft_printf("format u = %u\n", 42));
+	printf("returns = %d bytes\n\n", printf("format u = %u\n", 42));
 
-    // Test unsigned integer with negative value
-    ft_printf("ft_printf: format u = %u\n", -42);
-    printf("printf:    format u = %u\n\n", -42);
+	// Test unsigned integer with negative value
+	printf("returns = %d bytes\n\n", ft_printf("format u = %u\n", -42));
+	printf("returns = %d bytes\n\n", printf("format u = %u\n", -42));
 
-    // Test unsigned integer with UINT_MAX
-    ft_printf("ft_printf: format u = %u\n", UINT_MAX);
-    printf("printf:    format u = %u\n\n", UINT_MAX);
+	// Test unsigned integer with UINT_MAX
+	printf("returns = %d bytes\n\n", ft_printf("format u = %u\n", UINT_MAX));
+	printf("returns = %d bytes\n\n", printf("format u = %u\n", UINT_MAX));
 
-    // Test hexadecimal (lowercase)
-    ft_printf("ft_printf: format x = %x\n", 42);
-    printf("printf:    format x = %x\n\n", 42);
+	// Test hexadecimal (lowercase)
+	printf("returns = %d bytes\n\n", ft_printf("format x = %x\n", 42));
+	printf("returns = %d bytes\n\n", printf("format x = %x\n", 42));
 
-    // Test hexadecimal (uppercase)
-    ft_printf("ft_printf: format X = %X\n", 42);
-    printf("printf:    format X = %X\n\n", 42);
+	// Test hexadecimal (uppercase)
+	printf("returns = %d bytes\n\n", ft_printf("format X = %X\n", 42));
+	printf("returns = %d bytes\n\n", printf("format X = %X\n", 42));
 
-    // Test pointer
-    ft_printf("ft_printf: format p = %p\n", &main);
-    printf("printf:    format p = %p\n\n", &main);
+	// Test pointer
+	printf("returns = %d bytes\n\n", ft_printf("format p = %p\n", &ft_printf));
+	printf("returns = %d bytes\n\n", printf("format p = %p\n", &ft_printf));
+	
+	// Test NULL pointer
+	printf("returns = %d bytes\n\n", ft_printf("format p = %p\n", NULL));
+	printf("returns = %d bytes\n\n", printf("format p = %p\n", NULL));
 
-    // Test percent sign
-    ft_printf("ft_printf: format %% = %%\n");
-    printf("printf:    format %% = %%\n\n");
-
-    return 0;
+	// Test percent sign
+	printf("returns = %d bytes\n\n", ft_printf("format %% = %%\n"));
+	printf("returns = %d bytes\n\n", printf("format %% = %%\n")); */
+	return 0;
 }
