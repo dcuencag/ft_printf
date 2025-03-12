@@ -12,16 +12,16 @@
 
 #include "ft_printf.h"
 
-int	ft_print_x(unsigned int nbr, int *count)
+int	ft_print_x_minus(unsigned int nbr, int *count)
 {
-    char	*hex_digits;
+	char	*hex_digits;
 
-    hex_digits = "0123456789abcdef";
-    if (nbr >= 16)
-    {
-        ft_print_x(nbr / 16, count);
-    }
-    write(1, &hex_digits[nbr % 16], 1);
-    (*count)++;
+	hex_digits = "0123456789abcdef";
+	if (nbr >= 16)
+	{
+		ft_print_x_minus(nbr / 16, count);
+	}
+	write(1, &hex_digits[nbr % 16], 1);
+	(*count)++;
 	return (*count);
 }
