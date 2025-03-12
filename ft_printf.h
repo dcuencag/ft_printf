@@ -29,12 +29,10 @@ int		ft_print_di(int nbr, int *count);
 
 int		ft_print_u(unsigned int nbr, int *count);
 
-int		ft_print_x(unsigned int nbr, int *count);
+int		ft_print_x_minus(unsigned int nbr, int *count);
 
-int		ft_print_X(unsigned int nbr, int *count);
+int		ft_print_x_mayus(unsigned int nbr, int *count);
 
 int		ft_print_percent(int *count);
-
-void	ft_putnbr_base(uintptr_t nbr, char *base);
 
 #endif
